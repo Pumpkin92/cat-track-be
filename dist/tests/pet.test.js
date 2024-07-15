@@ -9,18 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const prismaTest = require("../jest.setup");
-describe("User", () => {
-    it("should create a new user", () => __awaiter(void 0, void 0, void 0, function* () {
-        const user = yield prismaTest.user.create({
+describe("Pets", () => {
+    it("should create a new pet", () => __awaiter(void 0, void 0, void 0, function* () {
+        const pet = yield prismaTest.pet.create({
             data: {
-                username: "John Doe",
+                name: "Jean",
+                petType: "cat",
+                breed: "Tortie",
             },
         });
-        expect(user).toHaveProperty("id");
-        expect(user.username).toBe("John Doe");
+        expect(pet).toHaveProperty("id");
+        expect(pet.name).toBe("Jean");
     }));
     it("should fetch all users", () => __awaiter(void 0, void 0, void 0, function* () {
-        const users = yield prismaTest.user.findMany();
+        const users = yield prismaTest.pet.findMany();
         expect(users.length).toBeGreaterThan(0);
     }));
 });
