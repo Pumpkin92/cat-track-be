@@ -1,11 +1,24 @@
 import { Request, Response } from "express";
-import { createPet, getAllPets } from "../models/pet-model";
+import { createPet, fetchPetbyId, getAllPets } from "../models/pet-model";
 
 export const getPets = async (req: Request, res: Response) => {
   try {
     const allPets = await getAllPets();
     if (allPets) {
       res.status(200).json({ data: allPets, message: "All Pets" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export const getPetById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const pet = await fetchPetbyId(parseInt(id));
+    if (pet) {
+      res.status(200).json({ data: pet, message: "Pet data found" });
     }
   } catch (error) {
     console.error(error);

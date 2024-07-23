@@ -4,5 +4,6 @@ const pet_controller_1 = require("../controllers/pet-controller");
 const express = require("express");
 const petRouter = express.Router();
 petRouter.get("/", pet_controller_1.getPets);
+petRouter.get("/:id", pet_controller_1.getPetById);
 petRouter.post("/create", pet_controller_1.addPet);
 module.exports = petRouter;
