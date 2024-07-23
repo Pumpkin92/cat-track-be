@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addPet = exports.getPets = void 0;
+exports.addPet = exports.getPetById = exports.getPets = void 0;
 const pet_model_1 = require("../models/pet-model");
 const getPets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,6 +24,20 @@ const getPets = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getPets = getPets;
+const getPetById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const pet = yield (0, pet_model_1.fetchPetbyId)(parseInt(id));
+        if (pet) {
+            res.status(200).json({ data: pet, message: "Pet data found" });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+exports.getPetById = getPetById;
 const addPet = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, petType, breed } = req.body;
     try {
