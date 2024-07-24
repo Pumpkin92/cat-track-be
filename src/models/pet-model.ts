@@ -9,6 +9,9 @@ export const getAllPets = async () => {
 export const fetchPetbyId = async (id: number) => {
   return await prisma.pet.findUnique({
     where: { id: id },
+    include: {
+      feeding: true,
+    },
   });
 };
 
