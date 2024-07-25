@@ -11,6 +11,7 @@ export const fetchPetbyId = async (id: number) => {
     where: { id: id },
     include: {
       feeding: true,
+      weight: true,
     },
   });
 };
