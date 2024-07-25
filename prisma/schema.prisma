@@ -21,6 +21,7 @@ model Pet {
   petType String
   breed String
   feeding Food[]
+  weight Weight[]
   
 @@map("Pet")   
 }
@@ -32,4 +33,13 @@ model Food {
   created  DateTime @default(now())
   pet        Pet     @relation(fields: [foodId], references: [id], onDelete: Cascade) 
 @@map("Food")
+}
+
+model Weight {
+  id Int @id @default(autoincrement())
+  weightId Int
+  title String
+  created  DateTime @default(now())
+  pet        Pet     @relation(fields: [weightId], references: [id], onDelete: Cascade) 
+@@map("Weight")
 }

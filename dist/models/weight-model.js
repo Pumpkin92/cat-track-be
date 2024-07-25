@@ -9,30 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPet = exports.fetchPetbyId = exports.getAllPets = void 0;
+exports.deleteWeight = exports.createWeight = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllPets = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findMany();
-});
-exports.getAllPets = getAllPets;
-const fetchPetbyId = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findUnique({
-        where: { id: id },
-        include: {
-            feeding: true,
-            weight: true,
-        },
-    });
-});
-exports.fetchPetbyId = fetchPetbyId;
-const createPet = (name, petType, breed) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.create({
+const createWeight = (title, weightId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.weight.create({
         data: {
-            name,
-            petType,
-            breed,
+            title,
+            weightId,
         },
     });
 });
-exports.createPet = createPet;
+exports.createWeight = createWeight;
+const deleteWeight = (weightId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.weight.delete({
+        where: { id: weightId },
+    });
+});
+exports.deleteWeight = deleteWeight;
