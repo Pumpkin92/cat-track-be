@@ -24,7 +24,7 @@ export const removeVaccine = async (req: Request, res: Response) => {
     const { vaccineId } = req.params;
     const deleted = await deleteVaccineItem(parseInt(vaccineId));
     if (deleted) {
-      res.status(200).send("Food item deleted successfully!!!");
+      res.status(200).send("Vaccine entry deleted successfully!!!");
     }
   } catch (error) {
     res.status(500).send("Internal Server Error");

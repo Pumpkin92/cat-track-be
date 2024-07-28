@@ -23,6 +23,7 @@ model Pet {
   feeding Food[]
   weight Weight[]
   vaccine Vaccine[]
+  treatments Treatments[]
   
 @@map("Pet")   
 }
@@ -52,4 +53,13 @@ model Vaccine {
   created  DateTime @default(now())
   pet        Pet     @relation(fields: [vaccineId], references: [id], onDelete: Cascade) 
 @@map("Vaccine")
+}
+
+model Treatments {
+  id Int @id @default(autoincrement())
+  treatmentsId Int
+  title String
+  created  DateTime @default(now())
+  pet        Pet     @relation(fields: [treatmentsId], references: [id], onDelete: Cascade) 
+@@map("Treatments")
 }

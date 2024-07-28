@@ -13,6 +13,7 @@ export const fetchPetbyId = async (id: number) => {
       feeding: true,
       weight: true,
       vaccine: true,
+      treatments: true,
     },
   });
 };

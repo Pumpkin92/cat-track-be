@@ -9,17 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeVaccine = exports.addVaccine = void 0;
-const vaccine_model_1 = require("../models/vaccine-model");
-const addVaccine = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { vaccineId } = req.params;
+exports.removeTreatments = exports.addTreatments = void 0;
+const treatments_model_1 = require("../models/treatments-model");
+const addTreatments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { treatmentsId } = req.params;
     const { title } = req.body;
     try {
-        const newItem = yield (0, vaccine_model_1.createVaccine)(title, parseInt(vaccineId));
+        const newItem = yield (0, treatments_model_1.createTreatments)(title, parseInt(treatmentsId));
         if (newItem) {
             res.status(200).json({
                 data: newItem,
-                message: "New vaccine Created Successfully!!!",
+                message: "New treatment added Successfully!!!",
             });
         }
         else {
@@ -30,17 +30,17 @@ const addVaccine = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).send("Internal Server Errorr");
     }
 });
-exports.addVaccine = addVaccine;
-const removeVaccine = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.addTreatments = addTreatments;
+const removeTreatments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { vaccineId } = req.params;
-        const deleted = yield (0, vaccine_model_1.deleteVaccineItem)(parseInt(vaccineId));
+        const { treatmentsId } = req.params;
+        const deleted = yield (0, treatments_model_1.deletetreatments)(parseInt(treatmentsId));
         if (deleted) {
-            res.status(200).send("Vaccine entry deleted successfully!!!");
+            res.status(200).send("Treatment deleted successfully!!!");
         }
     }
     catch (error) {
         res.status(500).send("Internal Server Error");
     }
 });
-exports.removeVaccine = removeVaccine;
+exports.removeTreatments = removeTreatments;
