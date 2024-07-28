@@ -9,31 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPet = exports.fetchPetbyId = exports.getAllPets = void 0;
+exports.deleteVaccineItem = exports.createVaccine = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllPets = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findMany();
-});
-exports.getAllPets = getAllPets;
-const fetchPetbyId = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findUnique({
-        where: { id: id },
-        include: {
-            feeding: true,
-            weight: true,
-            vaccine: true,
-        },
-    });
-});
-exports.fetchPetbyId = fetchPetbyId;
-const createPet = (name, petType, breed) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.create({
+const createVaccine = (title, vaccineId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.vaccine.create({
         data: {
-            name,
-            petType,
-            breed,
+            title,
+            vaccineId,
         },
     });
 });
-exports.createPet = createPet;
+exports.createVaccine = createVaccine;
+const deleteVaccineItem = (vaccineId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.vaccine.delete({
+        where: { id: vaccineId },
+    });
+});
+exports.deleteVaccineItem = deleteVaccineItem;
