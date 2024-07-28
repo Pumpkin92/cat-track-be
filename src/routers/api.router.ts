@@ -4,11 +4,13 @@ const apiRouter = express.Router();
 const petRouter = require("./pet.router");
 const foodRouter = require("./food.router");
 const weightRouter = require("./weight.router");
+const vaccineRouter = require("./vaccine.router");
 
 apiRouter.use(express.json());
 
 apiRouter.use("/pets", petRouter);
 apiRouter.use("/food", foodRouter);
 apiRouter.use("/weight", weightRouter);
+apiRouter.use("/vaccine", vaccineRouter);
 
 module.exports = apiRouter;
