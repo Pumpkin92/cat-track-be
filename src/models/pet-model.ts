@@ -14,6 +14,7 @@ export const fetchPetbyId = async (id: number) => {
       weight: true,
       vaccine: true,
       treatments: true,
+      appointments: true,
     },
   });
 };
