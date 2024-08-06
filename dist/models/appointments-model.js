@@ -9,33 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createPet = exports.fetchPetbyId = exports.getAllPets = void 0;
+exports.deleteAppointment = exports.createAppoitnment = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getAllPets = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findMany();
-});
-exports.getAllPets = getAllPets;
-const fetchPetbyId = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.findUnique({
-        where: { id: id },
-        include: {
-            feeding: true,
-            weight: true,
-            vaccine: true,
-            treatments: true,
-            appointments: true,
-        },
-    });
-});
-exports.fetchPetbyId = fetchPetbyId;
-const createPet = (name, petType, breed) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prisma.pet.create({
+const createAppoitnment = (title, participant, date, appointmentId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.appointments.create({
         data: {
-            name,
-            petType,
-            breed,
+            title,
+            participant,
+            date,
+            appointmentId,
         },
     });
 });
-exports.createPet = createPet;
+exports.createAppoitnment = createAppoitnment;
+const deleteAppointment = (appointmentId) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma.appointments.delete({
+        where: { id: appointmentId },
+    });
+});
+exports.deleteAppointment = deleteAppointment;
