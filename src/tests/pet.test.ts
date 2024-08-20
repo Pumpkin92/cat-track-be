@@ -13,8 +13,21 @@ describe("Pets", () => {
     expect(pet.name).toBe("Jean");
   });
 
-  it("should fetch all users", async () => {
-    const users = await prismaTest.pet.findMany();
-    expect(users.length).toBeGreaterThan(0);
+  it("should fetch all pets", async () => {
+    const pets = await prismaTest.pet.findMany();
+    expect(pets.length).toBeGreaterThan(0);
+  });
+
+  it.only("should fetch a specific pet by its id", async () => {
+    const pet = await prismaTest.pet.findUnique({
+      where: { id: 2 },
+    });
+    console.log(pet);
+    expect(pet).toMatchObject({
+      id: 2,
+      name: "Jean",
+      petType: "cat",
+      breed: "Tortie",
+    });
   });
 });

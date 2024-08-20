@@ -21,8 +21,20 @@ describe("Pets", () => {
         expect(pet).toHaveProperty("id");
         expect(pet.name).toBe("Jean");
     }));
-    it("should fetch all users", () => __awaiter(void 0, void 0, void 0, function* () {
-        const users = yield prismaTest.pet.findMany();
-        expect(users.length).toBeGreaterThan(0);
+    it("should fetch all pets", () => __awaiter(void 0, void 0, void 0, function* () {
+        const pets = yield prismaTest.pet.findMany();
+        expect(pets.length).toBeGreaterThan(0);
+    }));
+    it.only("should fetch a specific pet by its id", () => __awaiter(void 0, void 0, void 0, function* () {
+        const pet = yield prismaTest.pet.findUnique({
+            where: { id: 2 },
+        });
+        console.log(pet);
+        expect(pet).toMatchObject({
+            id: 2,
+            name: "Jean",
+            petType: "cat",
+            breed: "Tortie",
+        });
     }));
 });
